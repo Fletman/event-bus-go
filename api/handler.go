@@ -22,7 +22,17 @@ func parseBody(ptr any, b io.ReadCloser) error {
 }
 
 func logRequest(r *http.Request) {
-	log.Println(r)
+	req_log := RequestLog{
+		URI:     r.RequestURI,
+		Method:  r.Method,
+		Headers: r.Header,
+		Host:    r.Host,
+	}
+	data, err := json.Marshal(req_log)
+	if err != nil {
+		log.Println(err)
+	}
+	log.Println(string(data))
 }
 
 func eventToSSE(evt events.Event) (sse string, err error) {

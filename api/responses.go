@@ -14,14 +14,12 @@ type res_log struct {
 }
 
 func res(w http.ResponseWriter, status int, body any) error {
-	log_msg, err := json.MarshalIndent(
+	log_msg, err := json.Marshal(
 		res_log{
 			Status:    status,
 			Body:      body,
 			Timestamp: time.Now().UTC().Format("2006-01-02 15:04:05 UTC"),
 		},
-		"",
-		"  ",
 	)
 	if err != nil {
 		return err
