@@ -160,7 +160,9 @@ func (s *Server) HandlePublishEvent(w http.ResponseWriter, r *http.Request) {
 	}
 
 	res := MessageResponse{
-		Message: fmt.Sprintf("Message published at timestamp: %d", *evt.EventTime),
+		Message: fmt.Sprintf(
+			"Message published at timestamp %d to event stream: %s", *evt.EventTime, evt.EventType,
+		),
 	}
 	Accepted(w, res)
 }
