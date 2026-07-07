@@ -36,11 +36,11 @@ func NewServer(event_bus_config string) (server *Server, err error) {
 	return
 }
 
-func (s *Server) StartServer(port string, tls *TlsConfig) (err error) {
+func (s *Server) StartServer(port string, tls *TlsConfig, router_base_path string) (err error) {
 	log.Printf("Starting server on port: %s\n", port)
 
 	router := http.NewServeMux()
-	s.AddHandlers(router)
+	s.AddHandlers(router, router_base_path)
 
 	if tls == nil {
 		err = http.ListenAndServe(":"+port, router)

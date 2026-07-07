@@ -17,6 +17,7 @@ func env(env_key string, default_val string) string {
 func main() {
 	port := env("SERVER_PORT", "8080")
 	event_bus_config := env("EVENT_BUS", "channel")
+	base_path := env("BASE_PATH", "/event-bus")
 
 	// /etc/cert-manager/tls.*
 	var tls_config *api.TlsConfig
@@ -35,7 +36,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	err = api_server.StartServer(port, tls_config)
+	err = api_server.StartServer(port, tls_config, base_path)
 	if err != nil {
 		panic(err)
 	}

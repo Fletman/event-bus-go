@@ -18,6 +18,7 @@ A lightweight Go event bus server with HTTP endpoints for registering event type
 | --- | --- |
 | APP_VERSION | Version of running server, reported by health check. Defaults to 0.0 if unset. |
 | SERVER_PORT | Port for server to listen on. Defaults to 8080 if unset. |
+| BASE_PATH | Base path to prepend to above API routes. Defaults to /event-bus if unset. |
 | EVENT_BUS | Flag to configure underlying event bus implementation. Currently, only "channel" is supported and is the default. |
 | TLS_CERT_PATH | Path to .crt cert file used for TLS. If unset, server will not use TLS or HTTP/2. |
 | TLS_KEY_PATH | Patk to .key keyfile used for TLS. If unset, server will not use TLS or HTTP/2. |

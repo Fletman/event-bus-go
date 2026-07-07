@@ -199,11 +199,11 @@ func (s *Server) HandleEventStream(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func (s *Server) AddHandlers(router *http.ServeMux) {
-	router.HandleFunc("/health", s.HandleHealthCheck)
-	router.HandleFunc("POST /events", s.HandleAddEvent)
-	router.HandleFunc("GET /events", s.HandleGetEvents)
-	router.HandleFunc("DELETE /events/{event}", s.HandleDeleteEvent)
-	router.HandleFunc("POST /events/{event}", s.HandlePublishEvent)
-	router.HandleFunc("GET /event-stream", s.HandleEventStream)
+func (s *Server) AddHandlers(router *http.ServeMux, base_path string) {
+	router.HandleFunc(base_path+"/health", s.HandleHealthCheck)
+	router.HandleFunc("POST "+base_path+"/events", s.HandleAddEvent)
+	router.HandleFunc("GET "+base_path+"/events", s.HandleGetEvents)
+	router.HandleFunc("DELETE "+base_path+"/events/{event}", s.HandleDeleteEvent)
+	router.HandleFunc("POST "+base_path+"/events/{event}", s.HandlePublishEvent)
+	router.HandleFunc("GET "+base_path+"/event-stream", s.HandleEventStream)
 }
